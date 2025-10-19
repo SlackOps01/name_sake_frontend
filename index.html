@@ -34,9 +34,9 @@
         setup(){
             let compliment = ref()
             async function getdata() {
-                response = await fetch("https://namesake.pxxl.click")
-                data = await response.json()
-                compliment.value = data[0]
+                let response = await fetch("https://namesake.pxxl.click")
+                let data = await response.json()
+                compliment.value = data.message
             }
             onMounted(getdata)
             return {
