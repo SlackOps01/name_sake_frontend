@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div id="vue-container">
+        <div class="h-screen w-full bg-pink-500 flex flex-col items-center justify-center space-y-6">
+            <h1 class="text-3xl font-mono font-extrabold">
+                Compliments for you 💖!
+            </h1>
+            <div class="h-[60%] w-[80%] sm:w-[400px] bg-pink-300 font-mono rounded-2xl flex items-center justify-center p-6 text-white text-lg shadow-lg text-center transition-all duration-300">
+                {{compliment}}
+            </div>
+             <button
+        @click="getdata"
+        class="bg-white text-pink-600 font-semibold px-6 py-2 rounded-lg shadow hover:bg-pink-100 transition"
+      >
+        New Compliment 💫
+      </button>
+        </div>
+
+    </div>
+</body>
+<script>
+    let {createApp, ref, onMounted} = Vue;
+
+
+    createApp({
+        setup(){
+            let compliment = ref()
+            async function getdata() {
+                response = await fetch("https://namesake.pxxl.click")
+                data = await response.json()
+                compliment.value = data[0]
+            }
+            onMounted(getdata)
+            return {
+                compliment,
+                getdata
+            }
+        }
+    }).mount("#vue-container")
+</script>
+</html>
