@@ -34,9 +34,9 @@
         setup(){
             let compliment = ref()
             async function getdata() {
-                let response = await fetch("https://namesake.pxxl.click/")
+                let response = await fetch("https://namesake-production.up.railway.app/")
                 let data = await response.json()
-                compliment.value = data.message
+                compliment.value = data[0]
             }
             onMounted(getdata)
             return {
